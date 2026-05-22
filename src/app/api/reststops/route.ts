@@ -34,9 +34,11 @@ export const GET = async (request: NextRequest) => {
   const key = process.env.PUBLIC_DATA_API_KEY || ''
   const baseParams = `key=${key}&type=json&numOfRows=300&pageNo=1`
 
+  const CACHE = { next: { revalidate: 86400 } } // 24시간 캐시
+
   const [locationRes, infoRes] = await Promise.all([
-    fetch(`https://data.ex.co.kr/openapi/locationinfo/locationinfoRest?${baseParams}`, { headers: HEADERS }),
-    fetch(`https://data.ex.co.kr/openapi/restinfo/hiwaySvarInfoList?${baseParams}`, { headers: HEADERS }),
+    fetch(`https://data.ex.co.kr/openapi/locationinfo/locationinfoRest?${baseParams}`, { headers: HEADERS, ...CACHE }),
+    fetch(`https://data.ex.co.kr/openapi/restinfo/hiwaySvarInfoList?${baseParams}`, { headers: HEADERS, ...CACHE }),
   ])
 
   if (!locationRes.ok || !infoRes.ok) {
