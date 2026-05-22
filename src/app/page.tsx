@@ -145,7 +145,7 @@ const Home = () => {
       </header>
 
       <div className="flex flex-1 overflow-hidden">
-        <aside className="w-80 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col overflow-y-auto">
+        <aside className="w-80 shrink-0 bg-white border-r border-gray-200 flex flex-col overflow-y-auto">
           <div className="p-4 space-y-4">
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700">출발지</label>
